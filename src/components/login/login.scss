@@ -1,0 +1,75 @@
+//Variables
+$main-color: #6c63ff;
+
+.login {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap !important;
+
+  .chats-img {
+    width: 500px;
+    height: 500px;
+    margin: 0 50px 0 0;
+  }
+
+  .image-section,
+  .login-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .login-title {
+    font-size: 80px;
+    color: black;
+    margin: 0 0 125px 0;
+  }
+
+  .login-btn {
+    padding: 10px 30px;
+    border-radius: 25px;
+    background-color: $main-color;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 1px solid white;
+  }
+  .login-btn p {
+    margin: 0;
+  }
+
+  .login-btn:hover {
+    background-color: white;
+    color: $main-color;
+    border: 1px solid $main-color;
+  }
+  .login-btn__img {
+    width: 20px;
+    height: 20px;
+    margin: 0 10px 0 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    .chats-img {
+      height: 350px;
+      width: 350px;
+      margin: 0;
+    }
+
+    .login-title {
+      font-size: 45px;
+    }
+
+    .login {
+      height: 100%;
+    }
+  }
+}
