@@ -41,6 +41,7 @@ $main-color: #6c63ff;
     display: flex;
     align-items: center;
     border: 1px solid white;
+    transition: all 0.2s;
   }
   .login-btn p {
     margin: 0;

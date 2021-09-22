@@ -1,16 +1,20 @@
-import { React, Fragment, useState, useEffect } from "react";
+//React Imports
+import { React, Fragment, useState, useEffect, useRef } from "react";
+
+//Internal Imports
 import "./main.scss";
+import Message from "../message/Message";
+import sendImg from "../../img/send.png";
+
+//External Imports
 import { getAuth } from "firebase/auth";
 import { getDatabase, ref, push, onValue } from "firebase/database";
-import Message from "../message/Message";
 import { useHistory } from "react-router";
-import sendImg from "../../img/send.png";
 
 const Main = () => {
   //Firebase instances
   const db = getDatabase();
   const auth = getAuth();
-  console.log(auth);
 
   //States
   const [message, setMessage] = useState("");
@@ -22,17 +26,21 @@ const Main = () => {
   };
 
   const handleMesssage = (e) => {
-    e.preventDefault();
-    let { displayName, photoURL } = auth.currentUser;
-    photoURL = photoURL.replace("s96-c", "s400-c");
+    if (e.target.valid) {
+      e.preventDefault();
+      let { displayName, photoURL } = auth.currentUser;
+      photoURL = photoURL.replace("s96-c", "s400-c");
 
-    let messageObject = {
-      username: displayName,
-      photo: photoURL,
-      message: message,
-    };
+      let messageObject = {
+        username: displayName,
+        photo: photoURL,
+        message: message,
+      };
 
-    push(ref(db, "messages"), messageObject);
+      push(ref(db, "messages"), messageObject);
+    }
+
+    /*   */
   };
 
   const getMessages = () => {
@@ -60,19 +68,20 @@ const Main = () => {
               <i>Empezá a chatear , mandá un mensaje! </i>{" "}
             </p>
           </div>
-          {messages &&
-            Object.keys(messages).map((item, index) => {
-              const { username, photo, message } = messages[item];
+          {messages
+            ? Object.keys(messages).map((item, index) => {
+                const { username, photo, message } = messages[item];
 
-              return (
-                <Message
-                  userImage={photo}
-                  name={username}
-                  message={message}
-                  key={index}
-                ></Message>
-              );
-            })}
+                return (
+                  <Message
+                    userImage={photo}
+                    name={username}
+                    message={message}
+                    key={index}
+                  ></Message>
+                );
+              })
+            : null}
         </div>
 
         <form className="send-form">
