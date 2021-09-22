@@ -51,7 +51,9 @@
 
     .send-input {
       border: none;
-      height: 45px;
+      height: 60px;
+      width: 400px;
+      resize: none;
       border-radius: 10px;
       padding: 0 10px;
       margin-right: 5px;
@@ -71,6 +73,11 @@
   .chat-container {
     .text-area {
       width: 100%;
+    }
+  }
+  .send-form {
+    .send-input {
+      width: 250px !important;
     }
   }
 }

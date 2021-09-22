@@ -5,6 +5,8 @@ import { React, Fragment } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  //functions
+
   return (
     <Fragment>
       <nav className="navbar navbar-dark bg-dark">

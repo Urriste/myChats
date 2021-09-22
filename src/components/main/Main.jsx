@@ -21,13 +21,49 @@ const Main = () => {
   const [messages, setMessages] = useState([{}]);
 
   //Handlers and Functions
+
+  const getRanHex = (size) => {
+    let result = [];
+
+    //possible values in a hexa number
+    let hexRef = [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f",
+    ];
+
+    for (let n = 0; n < size; n++) {
+      //we take a random position of 0 to 16, and we add the value of that position to the array
+      result.push(hexRef[Math.floor(Math.random() * 16)]);
+    }
+
+    return result.join("");
+  };
+
   const handleChange = (e) => {
-    setMessage(e.target.value);
+    let valor = e.target.value.replace(/\n/g, "\r\n");
+    console.log(valor);
+    setMessage(valor);
   };
 
   const handleMesssage = (e) => {
-    if (e.target.valid) {
-      e.preventDefault();
+    e.preventDefault();
+    let textArea = document.querySelector("textarea");
+
+    if (message != 0) {
       let { displayName, photoURL } = auth.currentUser;
       photoURL = photoURL.replace("s96-c", "s400-c");
 
@@ -38,9 +74,8 @@ const Main = () => {
       };
 
       push(ref(db, "messages"), messageObject);
+      textArea.value = "";
     }
-
-    /*   */
   };
 
   const getMessages = () => {
@@ -62,7 +97,10 @@ const Main = () => {
       <div className="container-fluid chat-container">
         <div className="text-area col-sm-12">
           <div className="chat-welcome__message">
-            <h4 className="welcome-message">¡Bienvenido/a a MyChats!</h4>
+            <h4 className="welcome-message">
+              ¡Bienvenidx a{" "}
+              <span style={{ color: `#02${getRanHex(6)}` }}>MyChats</span>!
+            </h4>
             <p>
               {" "}
               <i>Empezá a chatear , mandá un mensaje! </i>{" "}
@@ -85,7 +123,7 @@ const Main = () => {
         </div>
 
         <form className="send-form">
-          <input
+          <textarea
             required
             onChange={handleChange}
             type="text"
