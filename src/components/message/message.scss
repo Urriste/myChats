@@ -1,20 +1,36 @@
 @import "../../index.scss";
 
 .message-container {
-  .message {
-    background-color: $main-color;
-    .user-data {
-      display: flex;
-      align-items: center;
+  width: 100%;
+  display: flex;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.316);
+  padding: 10px 0;
 
-      .message-user__image {
-        height: 25px;
-        width: 25px;
-        margin-right: 10px;
-      }
-      .message-user {
-        font-weight: bold;
-      }
+  .message-left {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    .message-photo {
+      height: 50px !important;
+      width: 50px !important;
+      border-radius: 50%;
     }
   }
+
+  .message-right {
+    .message-username {
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .message-content {
+      word-break: break-all;
+      margin: 0;
+    }
+  }
+}
+
+.message-container:hover {
+  background-color: rgba(128, 128, 128, 0.439);
+  cursor: pointer;
 }
