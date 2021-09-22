@@ -1,15 +1,22 @@
+//React Imports
 import { React, Fragment } from "react";
+
+//External Imports
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import { useHistory } from "react-router";
+
+//Internal Imports
 import "./login.scss";
 import googleLogo from "../../img/google(1).png";
 import chatsImage from "../../img/chats.svg";
-import { useHistory } from "react-router";
 
 const Login = () => {
+  //External Instances
   const provider = new GoogleAuthProvider();
   const auth = getAuth();
   const history = useHistory();
 
+  //Functions
   const handleGoogleLogin = () => {
     signInWithPopup(auth, provider)
       .then((res) => {
